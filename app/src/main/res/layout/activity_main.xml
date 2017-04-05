@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,21 +5,110 @@
     android:layout_height="match_parent"
     tools:context="com.mascotworld.yandextranstlate.MainActivity">
 
-    <EditText
-        android:id="@+id/inputedtext"
-        style="@style/Widget.AppCompat.AutoCompleteTextView"
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_alignParentStart="true"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:clipToPadding="true"
+        android:fillViewport="true"
         android:layout_alignParentTop="true"
-        android:ems="10"
-        android:hint="Введите переводимый текст"
-        android:inputType="textMultiLine"
-        android:selectAllOnFocus="false"
-        android:textAlignment="center" />
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/outranslang">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/cardView"
+                android:clipToPadding="false"
+                android:paddingTop="3dp"
+                android:scrollbars="vertical" />
+
+            <EditText
+                android:id="@+id/inputedtext"
+                style="@style/Widget.AppCompat.AutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:ems="10"
+                android:hint="Введите переводимый текст"
+                android:inputType="textMultiLine"
+                android:selectAllOnFocus="true"
+                android:textAlignment="center" />
+
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/inputedtext"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="2dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/TranslateText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_toStartOf="@+id/copybutton"
+                        android:paddingBottom="10dp"
+                        android:paddingStart="10dp"
+                        android:paddingTop="10dp"
+                        android:scrollbars="vertical"
+                        android:text="Переведённый текст..."
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                    <Button
+                        android:id="@+id/copybutton"
+                        style="@style/Widget.AppCompat.Button.Small"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:padding="10dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentTop="true"
+                        android:background="@mipmap/ic_content_copy_black_36dp" />
+
+                    <Button
+                        android:id="@+id/favorite"
+                        style="@style/Widget.AppCompat.Button.Small"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignStart="@+id/copybutton"
+                        android:layout_below="@+id/copybutton"
+                        android:padding="10dp"
+                        android:background="@mipmap/ic_favorite_border_black_36dp" />
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <Button
+                android:id="@+id/clearedit"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/ic_clear_black_24dp" />
+
+
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
 
     <Button
         android:id="@+id/outranslang"
+        style="@android:style/Widget.Material.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -31,6 +119,7 @@
 
     <Button
         android:id="@+id/intranslang"
+        style="@android:style/Widget.Material.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -41,81 +130,11 @@
 
     <Button
         android:id="@+id/changelang"
+        style="@android:style/Widget.Material.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:background="@android:color/holo_orange_dark"
-        android:text="---" />
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/inputedtext"
-        app:cardCornerRadius="5dp"
-        app:cardElevation="2dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/TranslateText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_toStartOf="@+id/ratingBar"
-                android:paddingBottom="10dp"
-                android:paddingStart="10dp"
-                android:paddingTop="10dp"
-                android:text=""
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
-            <RatingBar
-                android:id="@+id/ratingBar"
-                style="@android:style/Widget.DeviceDefault.RatingBar"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignStart="@+id/copybutton"
-                android:layout_below="@+id/copybutton"
-                android:isIndicator="true"
-                android:numStars="1"
-                android:rating="0" />
-
-            <Button
-                android:id="@+id/copybutton"
-                style="@style/Widget.AppCompat.Button.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true"
-                android:background="@android:color/holo_orange_dark"
-                android:text="Copy" />
-        </RelativeLayout>
-
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/cardView"
-        android:scrollbars="vertical"
-        android:layout_above="@+id/outranslang" />
-
-    <Button
-        android:id="@+id/clearedit"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:background="@color/cardview_light_background"
-        android:text="x" />
-
-
+        android:text="---"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
